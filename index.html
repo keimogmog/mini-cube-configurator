@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mini cube Configurator</title>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <main>
+      <h1>mini cube Configurator</h1>
+
+      <p class="hint">
+        Shared browser Configurator for mini cube devices. MP9 is the first supported model
+        (MIDI Channel and pad CC numbers). Use Chrome or Edge on this HTTPS page or localhost.
+        Web MIDI with SysEx is required. Firmware Update plus Connect to Bootloader is a WebUSB
+        PoC. UF2 Flash Plan is a browser dry run first. Write UF2 uses only a Dry Run ACCEPT plan
+        (known MP9_V1.ino.uf2). Reboot stays disabled until verify passes.
+      </p>
+
+      <button id="connect-btn" type="button">Connect</button>
+
+      <dl class="meta">
+        <div>
+          <dt>Device</dt>
+          <dd id="device-name">—</dd>
+        </div>
+        <div>
+          <dt>Connection</dt>
+          <dd id="connection">Disconnected</dd>
+        </div>
+        <div>
+          <dt>Firmware</dt>
+          <dd id="firmware">—</dd>
+        </div>
+      </dl>
+
+      <div id="device-root"></div>
+
+      <div class="actions">
+        <button id="read-btn" type="button" disabled>Read from device</button>
+        <button id="save-btn" type="button" disabled>Save to device</button>
+        <button id="restore-btn" type="button" disabled>Restore defaults</button>
+        <button id="firmware-update-btn" type="button" disabled hidden>
+          Firmware Update
+        </button>
+      </div>
+
+      <section class="bootloader-panel fw-update-panel" aria-labelledby="fw-update-heading">
+        <h2 id="fw-update-heading">Firmware Update</h2>
+        <p id="fw-update-message" class="fw-update-message">
+          Connect your device to check for updates.
+        </p>
+        <dl id="fw-update-versions" class="meta fw-update-versions" hidden>
+          <div>
+            <dt>Current</dt>
+            <dd id="fw-update-current">—</dd>
+          </div>
+          <div>
+            <dt>Latest</dt>
+            <dd id="fw-update-latest">—</dd>
+          </div>
+        </dl>
+        <p id="fw-update-error" class="fw-update-error" hidden></p>
+        <p id="fw-update-error-detail" class="fw-update-error-detail" hidden></p>
+        <pre id="fw-update-manual-bootsel" class="fw-update-manual-bootsel" hidden></pre>
+        <div class="actions bootloader-actions fw-update-actions">
+          <button id="install-firmware-btn" type="button" disabled hidden>Update</button>
+          <button id="fw-connect-bootloader-btn" type="button" hidden>Connect to Bootloader</button>
+          <button id="check-firmware-btn" type="button" disabled hidden class="fw-update-check-again">
+            Check again
+          </button>
+        </div>
+      </section>
+
+      <section
+        id="legacy-bootloader-panel"
+        class="bootloader-panel"
+        hidden
+        aria-hidden="true"
+        aria-labelledby="bootloader-heading"
+      >
+        <h2 id="bootloader-heading">Bootloader (WebUSB PoC)</h2>
+        <p class="hint">
+          After Firmware Update, MP9 appears as RPI-RP2. Connect to Bootloader claims the ROM
+          PICOBOOT interface. Test PICOBOOT Communication then sends PC_READ of 16 ROM bytes at
+          0x00000000. UF2 Flash Plan parses a known MP9 UF2. If PICOBOOT is claimed, Dry Run also
+          reads EEPROM[0x101FF000] (256 bytes) and keeps that probe. Write UF2 then erases and
+          programs only the accepted plan range, verifies every page, and leaves Reboot disabled
+          until verify passes. EEPROM is never in the erase/write range.
+        </p>
+        <div class="actions bootloader-actions">
+          <button id="connect-bootloader-btn" type="button">Connect to Bootloader</button>
+          <button id="disconnect-bootloader-btn" type="button" disabled>Disconnect Bootloader</button>
+          <button id="test-picoboot-btn" type="button" disabled>Test PICOBOOT Communication</button>
+        </div>
+        <dl class="meta">
+          <div>
+            <dt>WebUSB</dt>
+            <dd id="bootloader-webusb">—</dd>
+          </div>
+          <div>
+            <dt>Result</dt>
+            <dd id="bootloader-result">Not connected</dd>
+          </div>
+          <div>
+            <dt>Chip</dt>
+            <dd id="bootloader-chip">—</dd>
+          </div>
+          <div>
+            <dt>VID / PID</dt>
+            <dd id="bootloader-vidpid">—</dd>
+          </div>
+          <div>
+            <dt>Product</dt>
+            <dd id="bootloader-product">—</dd>
+          </div>
+          <div>
+            <dt>Serial</dt>
+            <dd id="bootloader-serial">—</dd>
+          </div>
+          <div>
+            <dt>Interface</dt>
+            <dd id="bootloader-interface">—</dd>
+          </div>
+          <div>
+            <dt>Endpoints</dt>
+            <dd id="bootloader-endpoints">—</dd>
+          </div>
+        </dl>
+        <h3 class="bootloader-dump-heading">PICOBOOT protocol (development)</h3>
+        <dl class="meta">
+          <div>
+            <dt>Command</dt>
+            <dd id="picoboot-command">—</dd>
+          </div>
+          <div>
+            <dt>Command status</dt>
+            <dd id="picoboot-status">—</dd>
+          </div>
+          <div>
+            <dt>Response / result</dt>
+            <dd id="picoboot-response" class="bootloader-pre">—</dd>
+          </div>
+          <div>
+            <dt>Transferred bytes</dt>
+            <dd id="picoboot-transferred">—</dd>
+          </div>
+          <div>
+            <dt>Protocol error</dt>
+            <dd id="picoboot-error">—</dd>
+          </div>
+        </dl>
+        <h3 class="bootloader-dump-heading">USB interfaces (before claim)</h3>
+        <pre id="bootloader-interfaces" class="bootloader-dump">(not enumerated yet)</pre>
+
+        <section class="flash-plan-panel" aria-labelledby="flash-plan-heading">
+          <h2 id="flash-plan-heading">UF2 Flash Plan / Dry Run</h2>
+          <p id="flash-plan-banner" class="flash-plan-banner">Dry Run — Flash not modified</p>
+          <p class="hint">
+            Choose a known-good <code>MP9_V1.ino.uf2</code>. Analyze UF2 (Dry Run) first. Write UF2
+            is enabled only after ACCEPT, bootloader claim, and an EEPROM probe. It erases the
+            accepted 4 KiB sectors, writes the accepted 256-byte pages, then read-back verifies.
+            Reboot is a separate step after verify. Erase flash stays unavailable on its own so
+            this UI cannot send an arbitrary address erase.
+          </p>
+          <div class="flash-plan-file">
+            <label for="uf2-file">UF2 file</label>
+            <input id="uf2-file" type="file" accept=".uf2,application/octet-stream" />
+          </div>
+          <div class="actions bootloader-actions">
+            <button id="uf2-dry-run-btn" type="button">Analyze UF2 (Dry Run)</button>
+            <button id="flash-erase-btn" type="button" disabled title="Standalone erase is not available">
+              Erase flash
+            </button>
+            <button id="flash-write-btn" type="button" disabled title="Needs Dry Run ACCEPT and an EEPROM probe">
+              Write UF2 (erase + verify)
+            </button>
+            <button id="flash-reboot-btn" type="button" disabled title="Disabled until verify passes">
+              Reboot
+            </button>
+          </div>
+          <h3 class="bootloader-dump-heading">Plan (browser parse)</h3>
+          <pre id="flash-plan-summary" class="bootloader-dump">Select a known-good MP9 UF2. Parsing stays in the browser. Flash is not modified.</pre>
+          <h3 class="bootloader-dump-heading">EEPROM / StoredConfig (pre-update probe is kept)</h3>
+          <pre id="flash-plan-eeprom" class="bootloader-dump">Connect to Bootloader to read EEPROM[0x101FF000] (256 bytes, PC_READ only).</pre>
+          <h3 class="bootloader-dump-heading">Flash program log</h3>
+          <pre id="flash-program-log" class="bootloader-dump">Write UF2 is idle. Dry Run ACCEPT is required first.</pre>
+        </section>
+      </section>
+
+      <p>Status: <span id="status">Idle</span></p>
+    </main>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

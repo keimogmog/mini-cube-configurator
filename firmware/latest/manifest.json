@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "device": "MP9",
+  "hardware": "V1",
+  "version": "0.3.1",
+  "uf2": "MP9_V1-0.3.1.uf2",
+  "uf2Url": "./MP9_V1-0.3.1.uf2",
+  "sha256": "cb182461970e17e342ae27726a781a74a2e3a2c2809694f873d9dfa0d781ab8a",
+  "uf2Family": "0xE48BFF56",
+  "minConfiguratorVersion": "0.0.0",
+  "minDeviceFirmwareForEnterBootloader": "0.3.0",
+  "releaseNotes": "MP9 V1 firmware 0.3.1 — temporary E2E test release for automatic ENTER_BOOTLOADER / WebUSB update (FW_PATCH only).",
+  "publishedAt": "2026-09-16T00:00:00Z"
+}

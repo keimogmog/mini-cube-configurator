@@ -1,0 +1,248 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.4;
+}
+
+body {
+  margin: 0;
+  background: #f3f3f0;
+  color: #1b1b1b;
+}
+
+main {
+  max-width: 42rem;
+  margin: 2rem auto;
+  padding: 1.25rem 1.5rem 1.75rem;
+  background: #fff;
+  border: 1px solid #d6d6d1;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 650;
+}
+
+.hint {
+  margin: 0 0 1rem;
+  color: #444;
+  font-size: 0.92rem;
+}
+
+button {
+  font: inherit;
+  padding: 0.4rem 0.7rem;
+}
+
+.meta {
+  display: grid;
+  gap: 0.35rem 1rem;
+  margin: 1rem 0;
+}
+
+.meta div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.5rem;
+}
+
+.meta dt {
+  margin: 0;
+  color: #555;
+}
+
+.bootloader-pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+}
+
+.meta dd {
+  margin: 0;
+}
+
+form {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.75rem 0.85rem;
+  border: 1px solid #d6d6d1;
+}
+
+legend {
+  padding: 0 0.25rem;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 7.5rem 5.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.35rem 0;
+}
+
+.field input {
+  font: inherit;
+  width: 5.5rem;
+  padding: 0.2rem 0.35rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+#firmware-update-btn {
+  margin-left: auto;
+}
+
+#install-firmware-btn {
+  font-weight: 650;
+}
+
+.fw-update-check-again {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.55rem;
+  color: #444;
+}
+
+.bootloader-panel {
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d6d6d1;
+}
+
+.bootloader-panel h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.bootloader-panel .meta div {
+  grid-template-columns: 8.5rem 1fr;
+}
+
+.bootloader-actions {
+  margin-top: 0.5rem;
+}
+
+.fw-update-message {
+  margin: 0.35rem 0 0.5rem;
+  color: #333;
+  overflow-wrap: anywhere;
+}
+
+.fw-update-versions {
+  margin: 0.5rem 0;
+}
+
+.fw-update-versions div {
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+}
+
+.fw-update-error {
+  margin: 0.35rem 0 0;
+  color: #8a1f1f;
+  overflow-wrap: anywhere;
+}
+
+.fw-update-error-detail {
+  margin: 0.2rem 0 0;
+  color: #666;
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.fw-update-manual-bootsel {
+  margin: 0.5rem 0 0;
+  padding: 0.55rem 0.65rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: #333;
+  background: #f7f7f4;
+  border: 1px solid #d6d6d1;
+}
+
+.fw-update-actions {
+  max-width: 100%;
+}
+
+.fw-update-actions button {
+  max-width: 100%;
+  white-space: normal;
+}
+
+.bootloader-dump-heading {
+  margin: 0.85rem 0 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.bootloader-dump {
+  margin: 0;
+  padding: 0.5rem 0.6rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  background: #f7f7f4;
+  border: 1px solid #d6d6d1;
+}
+
+.placeholder-panel {
+  margin-top: 0.75rem;
+}
+
+.flash-plan-panel {
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #d6d6d1;
+}
+
+.flash-plan-panel h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.flash-plan-banner {
+  margin: 0 0 0.65rem;
+  padding: 0.45rem 0.6rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: #5a3d00;
+  background: #fff4cc;
+  border: 1px solid #e0c36a;
+}
+
+.flash-plan-file {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.flash-plan-file input {
+  font: inherit;
+  max-width: 100%;
+}
+
+#flash-erase-btn:disabled,
+#flash-write-btn:disabled,
+#flash-reboot-btn:disabled {
+  opacity: 0.55;
+}
