@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "device": "MF5",
+  "hardware": "V1",
+  "version": "0.2.1",
+  "uf2": "MF5_V1-0.2.1.uf2",
+  "uf2Url": "./MF5_V1-0.2.1.uf2",
+  "sha256": "daec9fe908c1588113ad97a67cb2b5bf93163b43751096bedddcb65eec3e164e",
+  "uf2Family": "0xE48BFF56",
+  "minConfiguratorVersion": "0.0.0",
+  "minDeviceFirmwareForEnterBootloader": "0.1.0",
+  "releaseNotes": "MF5 V1 firmware 0.2.1 — self-recovery hardening: do not mark fader values sent on TX failure / unmounted / DetachedHold / Cooldown; re-probe after Cooldown→Idle so replug TX stall can recover without touching faders. Keeps MIDI-only + runtime recovery + 200 ms post-mount hold + ENTER_BOOTLOADER.",
+  "publishedAt": "2026-10-01T00:00:00Z"
+}

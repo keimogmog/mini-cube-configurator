@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "device": "MP9",
+  "hardware": "V1",
+  "version": "0.3.2",
+  "uf2": "MP9_V1-0.3.2.uf2",
+  "uf2Url": "./MP9_V1-0.3.2.uf2",
+  "sha256": "436ce13865c386768d099fd382a50f9fc153f0d98df26dbebd5d7b93fda20954",
+  "uf2Family": "0xE48BFF56",
+  "minConfiguratorVersion": "0.0.0",
+  "minDeviceFirmwareForEnterBootloader": "0.3.0",
+  "releaseNotes": "MP9 V1 firmware 0.3.2 — hardware-validated latest candidate: MIDI-only USB, runtime recovery, 200 ms post-mount TX hold, and pad TX self-recovery hardening (do not mark edges sent on TX failure / unmounted / DetachedHold / Cooldown; re-probe after mount / Cooldown→Idle). Keeps ENTER_BOOTLOADER / SysEx / EEPROM unchanged.",
+  "publishedAt": "2026-10-01T00:00:00Z"
+}

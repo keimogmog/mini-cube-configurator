@@ -1,0 +1,369 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.4;
+  --bg-page: #0e0e0e;
+  --bg-panel: #111111;
+  --bg-elevated: #1a1a1a;
+  --bg-input: #1c1c1c;
+  --bg-button: #252525;
+  --bg-button-hover: #2f2f2f;
+  --border: #333333;
+  --border-strong: #444444;
+  --text: #e8e8e8;
+  --text-muted: #a8a8a8;
+  --text-dim: #888888;
+  --accent: #6ea8fe;
+  --accent-soft: #243447;
+  --warning-bg: #2a2410;
+  --warning-border: #6b5a22;
+  --warning-text: #e6d48a;
+  --error: #f07178;
+  --live-hit: rgba(56, 189, 248, 0.12);
+  --live-hit-border: #38bdf8;
+  --live-hit-glow: rgba(56, 189, 248, 0.35);
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text);
+}
+
+main {
+  max-width: 42rem;
+  margin: 2rem auto;
+  padding: 1.25rem 1.5rem 1.75rem;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.hint {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+button {
+  font: inherit;
+  padding: 0.4rem 0.7rem;
+  color: var(--text);
+  background: var(--bg-button);
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+}
+
+button:hover:not(:disabled) {
+  background: var(--bg-button-hover);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  opacity: 0.45;
+  color: var(--text-dim);
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: 0.55;
+  color: var(--text-dim);
+  background: var(--bg-elevated);
+}
+
+.meta {
+  display: grid;
+  gap: 0.35rem 1rem;
+  margin: 1rem 0;
+}
+
+.meta div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.5rem;
+}
+
+.meta dt {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.bootloader-pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+}
+
+.meta dd {
+  margin: 0;
+  color: var(--text);
+}
+
+form {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.75rem 0.85rem;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+legend {
+  padding: 0 0.25rem;
+  color: var(--text-muted);
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 7.5rem 5.5rem;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.35rem 0;
+}
+
+.field span {
+  color: var(--text);
+}
+
+.field input {
+  font: inherit;
+  width: 5.5rem;
+  padding: 0.2rem 0.35rem;
+  color: var(--text);
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+}
+
+#live-midi {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes live-midi-hit {
+  from {
+    border-color: var(--live-hit-border);
+    background: var(--live-hit);
+    box-shadow:
+      0 0 0 1px var(--live-hit-border),
+      0 0 8px var(--live-hit-glow);
+  }
+  to {
+    border-color: var(--border-strong);
+    background: var(--bg-input);
+    box-shadow: none;
+  }
+}
+
+.field input.live-midi-hit {
+  animation: live-midi-hit 0.55s ease-out;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+#firmware-update-btn {
+  margin-left: auto;
+}
+
+#install-firmware-btn {
+  font-weight: 650;
+}
+
+.fw-update-check-again {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.55rem;
+  color: var(--text-muted);
+}
+
+.bootloader-panel {
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.bootloader-panel h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.bootloader-panel .meta div {
+  grid-template-columns: 8.5rem 1fr;
+}
+
+.bootloader-actions {
+  margin-top: 0.5rem;
+}
+
+.fw-update-message {
+  margin: 0.35rem 0 0.5rem;
+  color: var(--text);
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.fw-update-versions {
+  margin: 0.5rem 0;
+}
+
+.fw-update-versions-secondary {
+  opacity: 0.72;
+  font-size: 0.92em;
+}
+
+.fw-update-versions div {
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+}
+
+.fw-update-error {
+  margin: 0.35rem 0 0;
+  color: var(--error);
+  overflow-wrap: anywhere;
+}
+
+.fw-update-error-detail {
+  margin: 0.2rem 0 0;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.fw-update-manual-bootsel {
+  margin: 0.5rem 0 0;
+  padding: 0.55rem 0.65rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--text);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+}
+
+.fw-update-actions {
+  max-width: 100%;
+}
+
+.fw-update-actions button {
+  max-width: 100%;
+  white-space: normal;
+}
+
+.bootloader-dump-heading {
+  margin: 0.85rem 0 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--text-muted);
+}
+
+.bootloader-dump {
+  margin: 0;
+  padding: 0.5rem 0.6rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--text);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+}
+
+.placeholder-panel {
+  margin-top: 0.75rem;
+}
+
+.flash-plan-panel {
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.flash-plan-panel h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.flash-plan-banner {
+  margin: 0 0 0.65rem;
+  padding: 0.45rem 0.6rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: var(--warning-text);
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+}
+
+.flash-plan-file {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.flash-plan-file input {
+  font: inherit;
+  max-width: 100%;
+  color: var(--text);
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+}
+
+#flash-erase-btn:disabled,
+#flash-write-btn:disabled,
+#flash-reboot-btn:disabled {
+  opacity: 0.55;
+}
+
+#status {
+  color: var(--text-muted);
+}
+
+pre {
+  color: var(--text);
+  background: var(--bg-elevated);
+  border-color: var(--border);
+}
